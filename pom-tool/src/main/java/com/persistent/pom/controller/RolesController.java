@@ -8,20 +8,32 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.persistent.pom.entities.Project;
 import com.persistent.pom.entities.Roles;
-import com.persistent.pom.response.Response;
+import com.persistent.pom.response.ResponseMessage;
 import com.persistent.pom.service.RolesService;
 
 @RestController
 public class RolesController {
-	
+
 	@Autowired
 	RolesService rolesService;
 
-	
 	@GetMapping(value = "/roles")
-	public ResponseEntity<Object> getRoles() {
+	public ResponseEntity<ResponseMessage<List<Roles>>> getRoles() {
 		List<Roles> roles = rolesService.getRoles();
-		return Response.createResponse("List of Roles", HttpStatus.OK, roles);
+		ResponseMessage<List<Roles>> response = new ResponseMessage<>();
+
+		if (roles.size() == 0) {
+			response.setLength(0);
+			response.setStatusCode(HttpStatus.OK);
+			response.setMessage("No roles found");
+			return new ResponseEntity<>(response, HttpStatus.OK);
+		}
+		response.setLength(roles.size());
+		response.setMessage("List of roles");
+		response.setData(roles);
+		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
+
 }

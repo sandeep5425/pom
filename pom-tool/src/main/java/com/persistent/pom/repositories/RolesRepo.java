@@ -6,4 +6,5 @@ import com.persistent.pom.entities.Roles;
 
 public interface RolesRepo extends CrudRepository<Roles, Integer> {
 	
+	
 }

@@ -1,14 +1,10 @@
 package com.persistent.pom.entities;
 
-import java.util.List;
-
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
 
 @Entity
 public class Location {
@@ -22,8 +18,7 @@ public class Location {
 	private String state;
 	private String pincode;
 	
-//	@OneToMany(mappedBy = "location" ,cascade = CascadeType.ALL)
-//	private List<Employee> employees;
+
 	
 	
 	public int getId() {
@@ -56,12 +51,7 @@ public class Location {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-//	public List<Employee> getEmployees() {
-//		return employees;
-//	}
-//	public void setEmployees(List<Employee> employees) {
-//		this.employees = employees;
-//	}
+
 	
 	
 }
