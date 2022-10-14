@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.persistent.pom.entities.Employee;
@@ -32,11 +33,11 @@ public class EmployeeController {
 
 		ResponseMessage<List<Employee>> responseMessage = new ResponseMessage<>();
 		if(employees.size() == 0) {
-		responseMessage.setStatusCode(HttpStatus.OK);
+		responseMessage.setStatusCode(HttpStatus.NOT_FOUND);
 		responseMessage.setLength(0);
 		responseMessage.setMessage("No employees record found");
 
-		return new ResponseEntity<>(responseMessage, HttpStatus.OK);
+		return new ResponseEntity<>(responseMessage, HttpStatus.NOT_FOUND);
 		}
 		
 		responseMessage.setStatusCode(HttpStatus.OK);
@@ -44,15 +45,12 @@ public class EmployeeController {
 		responseMessage.setMessage("List of employees records that are found");
 		responseMessage.setData(employees);
 		return new ResponseEntity<>(responseMessage, HttpStatus.OK);
-		
 	}
 
-	@GetMapping(value = "/employee/{id}")
-	public ResponseEntity<ResponseMessage<Employee>> getParticularEmployee(@PathVariable("id") int id) {
-		
+	@GetMapping(value = "/employee"	)
+	public ResponseEntity<ResponseMessage<Employee>> getParticularEmployee(@RequestParam int id)  {
 		
 		//logic cheking the validity of token 
-		
 		Employee employee = employeeService.getEmployeeById(id);
 		ResponseMessage<Employee> response = new ResponseMessage<>();
 		if (employee == null) {
@@ -83,8 +81,8 @@ public class EmployeeController {
 		return null; // need to return the employee by performing checks in proper format
 	}
 
-	@DeleteMapping(value = "/employee/{id}")
-	public ResponseEntity<ResponseMessage<Employee>> deleteEmployee(@PathVariable("id") int id) {
+	@DeleteMapping(value = "/employee")
+	public ResponseEntity<ResponseMessage<Employee>> deleteEmployee(@RequestParam int id) {
 		return null;
 	}
 

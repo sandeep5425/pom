@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.persistent.pom.entities.Project;
@@ -40,8 +41,8 @@ public class ProjectController {
 		
 	}
 	
-	@GetMapping(value = "/project/{id}")
-	public ResponseEntity<ResponseMessage<List<Project>>> getParticularProject(@PathVariable("id")int id ) {
+	@GetMapping(value = "/project")
+	public ResponseEntity<ResponseMessage<List<Project>>> getParticularProject(@RequestParam int id) {
 		return null;
 	}
 	
@@ -55,8 +56,8 @@ public class ProjectController {
 		return null;
 	}
 	
-	@DeleteMapping(value = "/project/{id}")
-	public ResponseEntity<ResponseMessage<List<Project>>> deleteProject(@PathVariable("id") int id){
+	@DeleteMapping(value = "/project")
+	public ResponseEntity<ResponseMessage<List<Project>>> deleteProject(@RequestParam int id){
 		return null;
 	}
 	

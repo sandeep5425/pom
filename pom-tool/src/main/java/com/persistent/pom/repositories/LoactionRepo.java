@@ -4,6 +4,6 @@ import org.springframework.data.repository.CrudRepository;
 
 import com.persistent.pom.entities.Location;
 
-public interface LocationRepo extends CrudRepository<Location, Integer> {
+public interface LoactionRepo extends CrudRepository<Location, Integer> {
 
 }
