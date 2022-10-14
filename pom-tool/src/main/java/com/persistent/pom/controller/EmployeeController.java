@@ -31,7 +31,7 @@ public class EmployeeController {
 		List<Employee> employees = employeeService.getEmployees();
 
 		ResponseMessage<List<Employee>> responseMessage = new ResponseMessage<>();
-		if(employees == null) {
+		if(employees.size() == 0) {
 		responseMessage.setStatusCode(HttpStatus.OK);
 		responseMessage.setLength(0);
 		responseMessage.setMessage("No employees record found");
@@ -49,6 +49,10 @@ public class EmployeeController {
 
 	@GetMapping(value = "/employee/{id}")
 	public ResponseEntity<ResponseMessage<Employee>> getParticularEmployee(@PathVariable("id") int id) {
+		
+		
+		//logic cheking the validity of token 
+		
 		Employee employee = employeeService.getEmployeeById(id);
 		ResponseMessage<Employee> response = new ResponseMessage<>();
 		if (employee == null) {

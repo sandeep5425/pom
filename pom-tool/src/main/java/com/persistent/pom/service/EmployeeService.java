@@ -21,13 +21,8 @@ public class EmployeeService {
 		return (List<Employee>) employeeRepo.findAll();
 	}
 
-	public Employee getEmployeeById(int id) {
-		try {			
-			return employeeRepo.findById(id).get();
-		}
-		catch (Exception e) {
-			return null;
-		}
+	public Employee getEmployeeById(int id) {		
+		return employeeRepo.findById(id).get();
 	}
 
 	public Employee updateEmployee(Employee emp) {
