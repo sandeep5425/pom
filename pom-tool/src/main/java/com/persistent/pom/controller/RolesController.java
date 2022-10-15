@@ -24,12 +24,6 @@ public class RolesController {
 		List<Roles> roles = rolesService.getRoles();
 		ResponseMessage<List<Roles>> response = new ResponseMessage<>();
 
-		if (roles.size() == 0) {
-			response.setLength(0);
-			response.setStatusCode(HttpStatus.OK);
-			response.setMessage("No roles found");
-			return new ResponseEntity<>(response, HttpStatus.OK);
-		}
 		response.setLength(roles.size());
 		response.setMessage("List of roles");
 		response.setData(roles);

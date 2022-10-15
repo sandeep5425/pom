@@ -1,7 +1,9 @@
 package com.persistent.pom.config;
 
 import java.util.Date;
+import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 import io.jsonwebtoken.Claims;
@@ -10,18 +12,21 @@ import io.jsonwebtoken.SignatureAlgorithm;
 
 @Service
 public class JwtToken {
-	private static final int EXPIRY_TIME = 10; // TIME A TOKEN IS VALID
-	private static final String SECRET_KEY = "SANDEEPMADHIRIPERSISTENTCOMSANDEEPMADHIRIPERSISTENTCOMSANDEEPMADHIRIPERSISTENTCOMSANDEEPMADHIRIPERSISTENTCOM";
+	private static final int EXPIRY_TIME = 10 * 60 * 60; // TIME A TOKEN IS VALID
+	
+	@Value("${pom.jwtSecretKey}")
+	private String SECRET_KEY;
 
-	public String generateJWTToken(UserRequest user) {
+	public String generateJWTToken(HashMap<String, String> claims, UserRequest user) {
 		// add claims for users
-		return createToken(user.getUsername());
+		return createToken(claims, user.getUsername());
 	}
 
-	public String createToken(String username) {
+	public String createToken(HashMap<String, String> claims, String username) {
 		Date currentDate = new Date(System.currentTimeMillis());
 		Date expiryDate = new Date(System.currentTimeMillis() + EXPIRY_TIME);
-		return Jwts.builder().setSubject(username).setIssuedAt(currentDate).setExpiration(expiryDate).signWith(SignatureAlgorithm.HS256	, SECRET_KEY).compact();
+		return Jwts.builder().setClaims(claims).setSubject(username).setIssuedAt(currentDate).setExpiration(expiryDate)
+				.signWith(SignatureAlgorithm.HS256, SECRET_KEY).compact();
 	}
 
 	public Claims claims(String token) {

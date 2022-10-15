@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.persistent.pom.entities.Module;
@@ -25,8 +26,8 @@ public class ModuleController {
 		return moduleService.getModules();
 	}
 	
-	@GetMapping(value = "/module/{id}")
-	public Module getParticularModule(@PathVariable("id")int id) {
+	@GetMapping(value = "/module")
+	public Module getParticularModule(@RequestParam("id")int id) {
 		//check if a module with id exists 
 		 return moduleService.getModule(id);
 	}
@@ -43,8 +44,8 @@ public class ModuleController {
 		return moduleService.updateModule(module);
 	}
 
-	@DeleteMapping(value = "/module/{id}")
-	public void delteModule(@PathVariable("id")int id) {
+	@DeleteMapping(value = "/module")
+	public void delteModule(@RequestParam("id")int id) {
 		//check if it is already present and send resoponse
 		 moduleService.deleteModule(id);
 	}

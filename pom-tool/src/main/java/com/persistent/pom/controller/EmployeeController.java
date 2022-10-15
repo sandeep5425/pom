@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.persistent.pom.entities.Employee;
@@ -47,8 +48,8 @@ public class EmployeeController {
 		
 	}
 
-	@GetMapping(value = "/employee/{id}")
-	public ResponseEntity<ResponseMessage<Employee>> getParticularEmployee(@PathVariable("id") int id) {
+	@GetMapping(value = "/employee")
+	public ResponseEntity<ResponseMessage<Employee>> getParticularEmployee(@RequestParam("id") int id) {
 		
 		
 		//logic cheking the validity of token 
