@@ -6,16 +6,22 @@ import java.util.HashMap;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
+import com.persistent.pom.CustomException.InvalidToken;
+
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
+import io.jsonwebtoken.security.SignatureException;
 
 @Service
 public class JwtToken {
+ 
 	private static final int EXPIRY_TIME = 10 * 60 * 60; // TIME A TOKEN IS VALID
 	
 	@Value("${pom.jwtSecretKey}")
 	private String SECRET_KEY;
+
+	 
 
 	public String generateJWTToken(HashMap<String, String> claims, UserRequest user) {
 		// add claims for users
@@ -30,7 +36,12 @@ public class JwtToken {
 	}
 
 	public Claims claims(String token) {
-		return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+		try {
+			return Jwts.parser().setSigningKey(SECRET_KEY).parseClaimsJws(token).getBody();
+		}catch(SignatureException e) {
+			throw new InvalidToken();
+		}
+		
 	}
 
 	public boolean validateToken(UserRequest user, String token) {
@@ -41,7 +52,6 @@ public class JwtToken {
 
 	public boolean isTokenExpired(String token) {
 		return claims(token).getExpiration().before(new Date());
-
 	}
 
 }

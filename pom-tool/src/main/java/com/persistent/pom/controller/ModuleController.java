@@ -28,6 +28,7 @@ public class ModuleController {
 	
 	@GetMapping(value = "/module")
 	public Module getParticularModule(@RequestParam("id")int id) {
+ 
 		//check if a module with id exists 
 		 return moduleService.getModule(id);
 	}
@@ -46,6 +47,7 @@ public class ModuleController {
 
 	@DeleteMapping(value = "/module")
 	public void delteModule(@RequestParam("id")int id) {
+
 		//check if it is already present and send resoponse
 		 moduleService.deleteModule(id);
 	}

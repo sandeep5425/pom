@@ -6,6 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import com.persistent.pom.CustomException.NoSuchIDException;
+import com.persistent.pom.CustomException.NullValueInsertion;
 import com.persistent.pom.entities.Module;
 import com.persistent.pom.repositories.ModuleRepo;
 
@@ -20,19 +22,41 @@ public class ModuleService {
 	}
 	
 	public Module addModule(Module module) {
-		return moduleRepo.save(module);
+		try {
+			return moduleRepo.save(module);
+		}
+		catch(Exception e) {
+			throw new NullValueInsertion();
+		}
+		
 	}
 	
 	public Module getModule(int id) {
-		return moduleRepo.findById(id).get();
+		try{
+			return moduleRepo.findById(id).get();
+		}catch(Exception e) {
+		   throw new NoSuchIDException();
+		}
+		
 	}
 	
 	public Module updateModule(Module module) {
-		return moduleRepo.save(module);
+		try {
+			return moduleRepo.save(module);
+		}
+		catch(Exception e) {
+			throw new NullValueInsertion();
+		}
+		
 	}
 	
 	public void deleteModule(int id) {
-		moduleRepo.deleteById(id);
+		try{
+			moduleRepo.deleteById(id);
+		}catch(Exception e) {
+		   throw new NoSuchIDException();
+		}
+		
 	}
 	
 	

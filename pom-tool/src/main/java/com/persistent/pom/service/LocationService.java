@@ -5,12 +5,12 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.persistent.pom.dto.LocationDto;
-import com.persistent.pom.repositories.LocationRepo;
+import com.persistent.pom.repositories.LoactionRepo;
 
 public class LocationService {
 
 	@Autowired
-	LocationRepo locationRepo;
+	LoactionRepo locationRepo;
 	
 	public List<LocationDto> getLocations(){
 		
