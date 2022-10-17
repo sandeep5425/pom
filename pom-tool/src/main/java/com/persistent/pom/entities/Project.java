@@ -19,8 +19,8 @@ public class Project {
 	private Date startDate;
 	@Column(name="enddate")
 	private Date endDate;
-	
- 
+		
+
 	
 	public int getId() {
 		return id;

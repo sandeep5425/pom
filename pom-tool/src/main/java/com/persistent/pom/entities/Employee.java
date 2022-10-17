@@ -1,16 +1,20 @@
 package com.persistent.pom.entities;
 
-
 import java.sql.Date;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "employee_master")
@@ -21,28 +25,32 @@ public class Employee {
 	private String empcode;
 	private String name;
 	private String email;
-	
+
 	@Column(name = "isactive")
 	private int isActive;
-	
+
 	private int contributing;
 	@Column(name = "joiningdate")
 	private Date joiningDate;
 	@Column(name = "leavingdate")
 	private Date leavingDate;
-	@Column(name="skillset")
-	private String skillSet;
 	
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "employee_master_skill",
+	joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
+	inverseJoinColumns =@JoinColumn(name="skill_id" , referencedColumnName = "id") )
+	private List<Skill> skills;
+
 	@ManyToOne
-	@JoinColumn(name = "roleid",nullable = false)
+	@JoinColumn(name = "roleid", nullable = false)
 	private Roles roles;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "locationid",nullable = false)
+	@JoinColumn(name = "locationid", nullable = false)
 	private Location location;
-	
+
 	@ManyToOne
-	@JoinColumn(name = "projectid",nullable = false)
+	@JoinColumn(name = "projectid", nullable = false)
 	private Project project;
 
 	public int getId() {
@@ -108,15 +116,6 @@ public class Employee {
 	public void setLeavingDate(Date leavingDate) {
 		this.leavingDate = leavingDate;
 	}
-
-	public String getSkillSet() {
-		return skillSet;
-	}
-
-	public void setSkillSet(String skillSet) {
-		this.skillSet = skillSet;
-	}
-
 	public Roles getRole() {
 		return roles;
 	}
@@ -140,7 +139,21 @@ public class Employee {
 	public void setProject(Project project) {
 		this.project = project;
 	}
-	
-	
-	
+
+	public List<Skill> getSkills() {
+		return skills;
+	}
+
+	public void setSkills(List<Skill> skills) {
+		this.skills = skills;
+	}
+
+	public Roles getRoles() {
+		return roles;
+	}
+
+	public void setRoles(Roles roles) {
+		this.roles = roles;
+	}
+
 }

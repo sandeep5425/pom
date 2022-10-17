@@ -22,9 +22,6 @@ public class RemarksController {
 		return null;
 	}
 	
-	@PostMapping(value = "")
-	public ResponseEntity<Object> updateRemarks(@RequestBody Remarks remarks){
-		return null;
-	}
+	 
 	
 }

@@ -18,5 +18,20 @@ public class ProjectService {
 	public List<Project> getProjects() {
 		return (List<Project>) projectRepo.findAll();
 	}
-
+	
+	public Project getProejct(int id) {
+		return projectRepo.findById(id).get();
+	}
+	
+	public Project addProject(Project project) {
+		return projectRepo.save(project);
+	}
+	
+	public Project updateProject(Project project) {
+		return projectRepo.save(project);
+	}
+	public void deleteProject(int id) {
+		projectRepo.deleteById(id);
+	}
+	
 }

@@ -38,23 +38,19 @@ public class AuthenticateUserController {
 		}
 
 		String token = jwtToken.generateJWTToken(claims, user);
+
 		ResponseMessage<TokenResponse> response = new ResponseMessage<>();
+
 		TokenResponse tokenResponse = new TokenResponse();
-		tokenResponse.setUsername(user.getUsername());
+		tokenResponse.setUsername(username);
 		tokenResponse.setToken(token);
+
 		response.setData(tokenResponse);
 		response.setMessage("Token message");
 		response.setStatusCode(HttpStatus.OK);
+		response.setLength(1);
+		response.setToken(tokenResponse);
 		return new ResponseEntity<ResponseMessage<TokenResponse>>(response, HttpStatus.OK);
 	}
-
-//	@PostMapping(value = "/validateToken")
-//	public String validateToken(@RequestBody TokenResponse token) {
-//		UserRequest user = new UserRequest();
-//		user.setUsername(token.getUsername());
-//		if (jwtToken.validateToken(user, token.getToken()))
-//			return "Valid Token";
-//		return "Token is invalid";
-//	}
 
 }

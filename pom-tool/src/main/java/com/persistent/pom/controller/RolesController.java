@@ -27,6 +27,7 @@ public class RolesController {
 		response.setLength(roles.size());
 		response.setMessage("List of roles");
 		response.setData(roles);
+		response.setStatusCode(HttpStatus.OK);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 

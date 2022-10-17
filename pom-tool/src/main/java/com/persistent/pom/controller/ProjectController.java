@@ -29,31 +29,47 @@ public class ProjectController {
 
 		List<Project> projects = projectService.getProjects();
 		ResponseMessage<List<Project>> response = new ResponseMessage<>();
-
-		if (projects.size() == 0) {
-			response.setLength(0);
-			response.setStatusCode(HttpStatus.OK);
-			response.setMessage("No projects found");
-			return new ResponseEntity<>(response, HttpStatus.OK);
-		}
+		System.out.println(projects.size());
+		response.setLength(projects.size());
+		response.setStatusCode(HttpStatus.OK);
+		response.setMessage("No projects found");
+		response.setData(projects);
 		return new ResponseEntity<>(response, HttpStatus.OK);
 
 	}
 
 	@GetMapping(value = "/project")
-	public ResponseEntity<ResponseMessage<List<Project>>> getParticularProject(@RequestParam("id") int id) {
+	public ResponseEntity<ResponseMessage<Project>> getParticularProject(@RequestParam("id") int id) {
+		Project project = projectService.getProejct(id);
 
-		return null;
+		ResponseMessage<Project> response = new ResponseMessage<>();
+		response.setData(project);
+		response.setLength(1);
+		response.setMessage("Project with the id: " + id);
+		return new ResponseEntity<ResponseMessage<Project>>(response, HttpStatus.OK);
+
 	}
 
 	@PostMapping(value = "/project")
-	public ResponseEntity<ResponseMessage<List<Project>>> addProject(@RequestBody Project project) {
-		return null;
+	public ResponseEntity<ResponseMessage<Project>> addProject(@RequestBody Project project) {
+		ResponseMessage<Project> response = new ResponseMessage<>();
+		Project addedProject = projectService.addProject(project);
+		response.setData(addedProject);
+		response.setLength(1);
+
+		return new ResponseEntity<ResponseMessage<Project>>(response, HttpStatus.OK);
+
 	}
 
 	@PutMapping(value = "/project")
-	public ResponseEntity<ResponseMessage<List<Project>>> updateProject(@RequestBody Project project) {
-		return null;
+	public ResponseEntity<ResponseMessage<Project>> updateProject(@RequestBody Project project) {
+		ResponseMessage<Project> response = new ResponseMessage<>();
+		Project updatedProject = projectService.updateProject(project);
+		response.setData(updatedProject);
+		response.setLength(1);
+		response.setMessage("Project details update sucessfully");
+		return new ResponseEntity<ResponseMessage<Project>>(response, HttpStatus.OK);
+
 	}
 
 	@DeleteMapping(value = "/project")

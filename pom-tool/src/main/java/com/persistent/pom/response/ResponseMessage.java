@@ -2,13 +2,15 @@ package com.persistent.pom.response;
 
 import org.springframework.http.HttpStatus;
 
+import com.persistent.pom.config.TokenResponse;
+
 public class ResponseMessage<T> {
 	
 	private HttpStatus statusCode;
 	private T data;
 	private int length;
 	private String message;
-	private String token;
+	private TokenResponse token;
 	
 	
 	
@@ -22,7 +24,7 @@ public class ResponseMessage<T> {
 		this.length = length;
 		this.message = message;
 	}
-	public ResponseMessage(HttpStatus statusCode, T data, String message, String token) {
+	public ResponseMessage(HttpStatus statusCode, T data, String message, TokenResponse token) {
 		super();
 		this.statusCode = statusCode;
 		this.data = data;
@@ -35,7 +37,7 @@ public class ResponseMessage<T> {
 		this.data = data;
 	}
 	
-	public ResponseMessage(HttpStatus statusCode, T data, int length, String message, String token) {
+	public ResponseMessage(HttpStatus statusCode, T data, int length, String message, TokenResponse token) {
 		super();
 		this.statusCode = statusCode;
 		this.data = data;
@@ -67,10 +69,10 @@ public class ResponseMessage<T> {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public String getToken() {
+	public TokenResponse getToken() {
 		return token;
 	}
-	public void setToken(String token) {
+	public void setToken(TokenResponse token) {
 		this.token = token;
 	}
 	
