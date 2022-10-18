@@ -11,9 +11,7 @@ public class ResponseMessage<T> {
 	private int length;
 	private String message;
 	private TokenResponse token;
-	
-	
-	
+		
 	public ResponseMessage() {
 		super();
 	}
@@ -75,8 +73,4 @@ public class ResponseMessage<T> {
 	public void setToken(TokenResponse token) {
 		this.token = token;
 	}
-	
-	
- 
-
 }

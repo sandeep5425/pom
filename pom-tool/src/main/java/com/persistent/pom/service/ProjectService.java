@@ -1,6 +1,7 @@
 package com.persistent.pom.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
@@ -19,18 +20,18 @@ public class ProjectService {
 		return (List<Project>) projectRepo.findAll();
 	}
 	
-	public Project getProejct(int id) {
-		return projectRepo.findById(id).get();
+	public Optional<Project> getProject(int id) throws IllegalArgumentException {
+		return projectRepo.findById(id);
 	}
 	
-	public Project addProject(Project project) {
+	public Project addProject(Project project) throws IllegalArgumentException {
 		return projectRepo.save(project);
 	}
 	
-	public Project updateProject(Project project) {
+	public Project updateProject(Project project) throws IllegalArgumentException {
 		return projectRepo.save(project);
 	}
-	public void deleteProject(int id) {
+	public void deleteProject(int id) throws IllegalArgumentException {
 		projectRepo.deleteById(id);
 	}
 	
