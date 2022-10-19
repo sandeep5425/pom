@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
 @Entity
-public class Remarks {
+public class Remark {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
