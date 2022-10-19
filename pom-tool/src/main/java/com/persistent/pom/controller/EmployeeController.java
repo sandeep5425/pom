@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.persistent.pom.customexception.EntityAlreadyExistException;
 import com.persistent.pom.customexception.NoSuchIDException;
 import com.persistent.pom.entities.Employee;
+import com.persistent.pom.response.ErrorMessage;
 import com.persistent.pom.response.ResponseMessage;
 import com.persistent.pom.service.EmployeeService;
 
@@ -34,8 +37,16 @@ public class EmployeeController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
 
 	@GetMapping(value = "/employees")
-	public ResponseEntity<ResponseMessage<List<Employee>>> getEmployees() throws Exception {
+	public ResponseEntity<ResponseMessage<List<Employee>>> getEmployees(HttpServletRequest request)
+			throws IllegalArgumentException, Exception {
 		LOGGER.info("Entered Employee controller to get employees list :: method = getEmployees");
+
+		// token -> validated (in order to get roles)
+
+		// check token is valid and then also
+
+		// if the user admin we need throw an exception
+//		getClaims(Token token)
 
 		List<Employee> employees = employeeService.getEmployees();
 		ResponseMessage<List<Employee>> responseMessage = new ResponseMessage<>();
@@ -44,7 +55,7 @@ public class EmployeeController {
 			responseMessage.setLength(0);
 			responseMessage.setData(new ArrayList<>());
 			responseMessage.setMessage("No employees found");
-			LOGGER.info("Exit Employee controller with no employees found :: method = getEmployees ");
+			LOGGER.error("Exit Employee controller with no employees found :: method = getEmployees ");
 			return new ResponseEntity<>(responseMessage, HttpStatus.OK);
 
 		}
@@ -70,7 +81,7 @@ public class EmployeeController {
 		response.setData(employee);
 		response.setLength(1);
 		response.setMessage("Details of the employee with id : " + id);
-		LOGGER.info("Exit Employee controller founding employee with given id :: method = getEmployee");
+		LOGGER.info("Exit Employee controller finding employee with given id :: method = getEmployee");
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
@@ -98,7 +109,7 @@ public class EmployeeController {
 		LOGGER.info("Entered Employee controller to update an employee :: method = updateEmployee ");
 		Optional<Employee> optEmployee = employeeService.getEmployee(emp.getId());
 		if (!optEmployee.isPresent()) {
-			LOGGER.info("Exit Employee controller as no employee exists with that id:: method = updateEmployee ");
+			LOGGER.error("Exit Employee controller as no employee exists with that id:: method = updateEmployee ");
 			throw new NoSuchIDException();
 		}
 		Employee employee = optEmployee.get();
@@ -125,7 +136,11 @@ public class EmployeeController {
 		response.setMessage("Deletion sucessful");
 		LOGGER.info("Exit Employee controller after deleting employee sucessfully:: method = deleteEmployee ");
 		return new ResponseEntity<ResponseMessage<Employee>>(response, HttpStatus.OK);
+	}
 
+	@GetMapping(value = "/employeeByName")
+	public List<Employee> getEmployeeByName(@RequestParam("name") String name) {
+		return employeeService.getEmployeeByUsername(name);
 	}
 
 }

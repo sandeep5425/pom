@@ -10,15 +10,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "project_files")
+@Table(name = "project_files") //change it to project file
 public class ProjectFile {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	private byte[] data;
-	private String format;
+	private String url;
+	private String description;
 	
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "projectid" ,nullable = false)
@@ -36,17 +36,17 @@ public class ProjectFile {
 	public void setName(String name) {
 		this.name = name;
 	}
-	public byte[] getData() {
-		return data;
+	public String getData() {
+		return url;
 	}
-	public void setData(byte[] data) {
-		this.data = data;
+	public void setData(String url) {
+		this.url = url;
 	}
 	public String getFormat() {
-		return format;
+		return description;
 	}
-	public void setFormat(String format) {
-		this.format = format;
+	public void setFormat(String description) {
+		this.description = description;
 	}
 
 }

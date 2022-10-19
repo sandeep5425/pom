@@ -1,5 +1,5 @@
 package com.persistent.pom.dto;
 
-public class RemarksDto {
+public class RemarkDto {
 
 }

@@ -32,7 +32,7 @@ public class ProjectController {
 	private static final Logger LOGGER = LoggerFactory.getLogger(ProjectController.class);
 
 	@GetMapping(value = "/projects")
-	public ResponseEntity<ResponseMessage<List<Project>>> getEmployees() throws Exception {
+	public ResponseEntity<ResponseMessage<List<Project>>> getProjects() throws Exception {
 		LOGGER.info("Entered Project controller to get projects list :: method = getProjects");
 
 		List<Project> projects = projectService.getProjects();
@@ -68,12 +68,12 @@ public class ProjectController {
 		response.setData(project);
 		response.setLength(1);
 		response.setMessage("Details of the Project with id : " + id);
-		LOGGER.info("Exit Project controller founding Project with given id :: method = getProject");
+		LOGGER.info("Exit Project controller finding Project with given id :: method = getProject");
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/project")
-	public ResponseEntity<ResponseMessage<Project>> addEmployee(@RequestBody Project proj)
+	public ResponseEntity<ResponseMessage<Project>> addProject(@RequestBody Project proj)
 			throws EntityAlreadyExistException, Exception {
 		LOGGER.info("Entered Project controller to add an Project:: method = addEmployee");
 		Optional<Project> optEmployee = projectService.getProject(proj.getId());
@@ -91,7 +91,7 @@ public class ProjectController {
 	}
 
 	@PutMapping(value = "/project")
-	public ResponseEntity<ResponseMessage<Project>> updateEmployee(@RequestBody Project proj)
+	public ResponseEntity<ResponseMessage<Project>> updateProject(@RequestBody Project proj)
 			throws NoSuchIDException, Exception {
 		LOGGER.info("Entered Project controller to update an Project :: method = updateProject ");
 		Optional<Project> optProject = projectService.getProject(proj.getId());
@@ -109,7 +109,7 @@ public class ProjectController {
 	}
 
 	@DeleteMapping(value = "/project")
-	public ResponseEntity<ResponseMessage<Project>> deleteEmployee(@RequestParam int id)
+	public ResponseEntity<ResponseMessage<Project>> deleteProject(@RequestParam int id)
 			throws NoSuchIDException, Exception {
 		LOGGER.info("Entered Project controller to delete an Project :: method = deleteProject");
 		Optional<Project> optProject = projectService.getProject(id);

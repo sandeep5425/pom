@@ -11,13 +11,13 @@ import com.persistent.pom.repositories.LoactionRepo;
 
 @RestController
 public class LocationController {
-	
+
 	@Autowired
 	LoactionRepo locationRepo;
+
 	@GetMapping(value = "/locations")
-	public List<Location> getLocations() {
+	public List<Location> getLocations( ) {
 		return (List<Location>) locationRepo.findAll();
 	}
-	
-	
+
 }

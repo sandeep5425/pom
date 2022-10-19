@@ -38,7 +38,6 @@ public class JwtToken {
 		} catch (SignatureException e) {
 			throw new InvalidToken();
 		}
-
 	}
 
 	public boolean validateToken(UserRequest user, String token) {

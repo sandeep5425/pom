@@ -1,0 +1,35 @@
+2022-10-19 15:49:37,743 [INFO] com.persistent.pom.PomToolApplication [main] Starting PomToolApplication using Java 17.0.2 on PSL-H357XM3 with PID 27400 (D:\PERSISTENT\POM\pom\pom-tool\target\classes started by sandeep_madhiri in D:\PERSISTENT\POM\pom\pom-tool) 
+2022-10-19 15:49:37,746 [INFO] com.persistent.pom.PomToolApplication [main] No active profile set, falling back to 1 default profile: "default" 
+2022-10-19 15:49:38,442 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Bootstrapping Spring Data JPA repositories in DEFAULT mode. 
+2022-10-19 15:49:38,514 [INFO] org.springframework.data.repository.config.RepositoryConfigurationDelegate [main] Finished Spring Data repository scanning in 66 ms. Found 8 JPA repository interfaces. 
+2022-10-19 15:49:38,916 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat initialized with port(s): 8080 (http) 
+2022-10-19 15:49:38,924 [INFO] org.apache.catalina.core.StandardService [main] Starting service [Tomcat] 
+2022-10-19 15:49:38,925 [INFO] org.apache.catalina.core.StandardEngine [main] Starting Servlet engine: [Apache Tomcat/9.0.65] 
+2022-10-19 15:49:39,129 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/pom] [main] Initializing Spring embedded WebApplicationContext 
+2022-10-19 15:49:39,129 [INFO] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext [main] Root WebApplicationContext: initialization completed in 1350 ms 
+2022-10-19 15:49:39,235 [INFO] com.zaxxer.hikari.HikariDataSource [main] pom2 - Starting... 
+2022-10-19 15:49:39,511 [INFO] com.zaxxer.hikari.HikariDataSource [main] pom2 - Start completed. 
+2022-10-19 15:49:39,551 [INFO] org.hibernate.jpa.internal.util.LogHelper [main] HHH000204: Processing PersistenceUnitInfo [name: default] 
+2022-10-19 15:49:39,581 [INFO] org.hibernate.Version [main] HHH000412: Hibernate ORM core version 5.6.11.Final 
+2022-10-19 15:49:39,704 [INFO] org.hibernate.annotations.common.Version [main] HCANN000001: Hibernate Commons Annotations {5.1.2.Final} 
+2022-10-19 15:49:39,786 [INFO] org.hibernate.dialect.Dialect [main] HHH000400: Using dialect: org.hibernate.dialect.MySQL8Dialect 
+2022-10-19 15:49:40,268 [INFO] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator [main] HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform] 
+2022-10-19 15:49:40,275 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [main] Initialized JPA EntityManagerFactory for persistence unit 'default' 
+2022-10-19 15:49:40,814 [WARN] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration [main] spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning 
+2022-10-19 15:49:41,170 [INFO] org.springframework.boot.web.embedded.tomcat.TomcatWebServer [main] Tomcat started on port(s): 8080 (http) with context path '/pom' 
+2022-10-19 15:49:41,554 [INFO] com.persistent.pom.PomToolApplication [main] Started PomToolApplication in 4.087 seconds (JVM running for 5.379) 
+2022-10-19 15:50:04,684 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/pom] [http-nio-8080-exec-1] Initializing Spring DispatcherServlet 'dispatcherServlet' 
+2022-10-19 15:50:04,684 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Initializing Servlet 'dispatcherServlet' 
+2022-10-19 15:50:04,685 [INFO] org.springframework.web.servlet.DispatcherServlet [http-nio-8080-exec-1] Completed initialization in 1 ms 
+2022-10-19 15:50:04,706 [INFO] com.persistent.pom.controller.ProjectController [http-nio-8080-exec-1] Entered Project controller to find Project with their id:: method = getProject 
+2022-10-19 15:50:04,755 [INFO] com.persistent.pom.controller.ProjectController [http-nio-8080-exec-1] Exit Project controller finding Project with given id :: method = getProject 
+2022-10-19 15:50:12,045 [INFO] com.persistent.pom.controller.ProjectController [http-nio-8080-exec-4] Entered Project controller to find Project with their id:: method = getProject 
+2022-10-19 15:50:12,051 [INFO] com.persistent.pom.controller.ProjectController [http-nio-8080-exec-4] Exit Project controller finding Project with given id :: method = getProject 
+2022-10-19 15:50:14,087 [INFO] com.persistent.pom.controller.EmployeeController [http-nio-8080-exec-5] Entered Employee controller to get employees list :: method = getEmployees 
+2022-10-19 15:50:14,107 [INFO] com.persistent.pom.controller.EmployeeController [http-nio-8080-exec-5] Exit Employee controller by fetching list of employees :: method = getEmployees  
+2022-10-19 15:54:03,620 [INFO] org.springframework.boot.admin.SpringApplicationAdminMXBeanRegistrar$SpringApplicationAdmin [RMI TCP Connection(13)-127.0.0.1] Application shutdown requested. 
+2022-10-19 15:54:03,636 [INFO] org.apache.catalina.core.StandardService [RMI TCP Connection(13)-127.0.0.1] Stopping service [Tomcat] 
+2022-10-19 15:54:03,637 [INFO] org.apache.catalina.core.ContainerBase.[Tomcat].[localhost].[/pom] [RMI TCP Connection(13)-127.0.0.1] Destroying Spring FrameworkServlet 'dispatcherServlet' 
+2022-10-19 15:54:03,646 [INFO] org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean [RMI TCP Connection(13)-127.0.0.1] Closing JPA EntityManagerFactory for persistence unit 'default' 
+2022-10-19 15:54:03,647 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(13)-127.0.0.1] pom2 - Shutdown initiated... 
+2022-10-19 15:54:03,656 [INFO] com.zaxxer.hikari.HikariDataSource [RMI TCP Connection(13)-127.0.0.1] pom2 - Shutdown completed. 

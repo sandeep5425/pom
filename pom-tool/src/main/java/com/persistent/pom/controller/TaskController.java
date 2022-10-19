@@ -67,14 +67,14 @@ public class TaskController {
 		response.setData(task);
 		response.setLength(1);
 		response.setMessage("Details of the task with id : " + id);
-		LOGGER.info("Exit Task controller founding task with given id :: method = getTask");
+		LOGGER.info("Exit Task controller finding task with given id :: method = getTask");
 		return new ResponseEntity<>(response, HttpStatus.OK);
 	}
 
 	@PostMapping(value = "/task")
-	public ResponseEntity<ResponseMessage<Task>> addEmployee(@RequestBody Task tsk)
+	public ResponseEntity<ResponseMessage<Task>> addTask(@RequestBody Task tsk)
 			throws EntityAlreadyExistException, Exception {
-		LOGGER.info("Entered Task controller to add an emplskoyee:: method = addTask");
+		LOGGER.info("Entered Task controller to add an task:: method = addTask");
 		Optional<Task> optTask = taskService.getTask(tsk.getId());
 		if (optTask.isPresent()) {
 			LOGGER.info("Exit Task controller as same task exists :: method = addTask ");
@@ -90,8 +90,7 @@ public class TaskController {
 	}
 
 	@PutMapping(value = "/task")
-	public ResponseEntity<ResponseMessage<Task>> updateEmployee(@RequestBody Task tsk)
-			throws NoSuchIDException, Exception {
+	public ResponseEntity<ResponseMessage<Task>> updateTask(@RequestBody Task tsk) throws NoSuchIDException, Exception {
 		LOGGER.info("Entered Task controller to update an task :: method = updateTask ");
 		Optional<Task> optTask = taskService.getTask(tsk.getId());
 		if (!optTask.isPresent()) {
@@ -108,8 +107,7 @@ public class TaskController {
 	}
 
 	@DeleteMapping(value = "/task")
-	public ResponseEntity<ResponseMessage<Task>> deleteEmployee(@RequestParam int id)
-			throws NoSuchIDException, Exception {
+	public ResponseEntity<ResponseMessage<Task>> deleteTask(@RequestParam int id) throws NoSuchIDException, Exception {
 		LOGGER.info("Entered Task controller to delete an task :: method = deleteTask");
 		Optional<Task> optTask = taskService.getTask(id);
 		if (!optTask.isPresent()) {
