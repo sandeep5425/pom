@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 
 import com.persistent.pom.customexception.NoSuchIDException;
 import com.persistent.pom.customexception.NullValueInsertion;
+import com.persistent.pom.entities.Employee;
 import com.persistent.pom.entities.Module;
 import com.persistent.pom.repositories.ModuleRepo;
 
@@ -17,50 +18,30 @@ public class ModuleService {
 	@Autowired
 	ModuleRepo moduleRepo;
 	
+	
 	public List<Module> getModules() {
 		return (List<Module>) moduleRepo.findAll();
 	}
 	
-	public Module addModule(Module module) {
-		try {
-			return moduleRepo.save(module);
-		}
-		catch(Exception e) {
-			throw new NullValueInsertion();
-		}
+	public Module addModule(Module module) throws IllegalArgumentException {
+		return moduleRepo.save(module);
 		
 	}
 	
-	public Module getModule(int id) {
-		try{
-			return moduleRepo.findById(id).get();
-		}catch(Exception e) {
-		   throw new NoSuchIDException();
+	public Optional<Module> getModule(int id) throws IllegalArgumentException {
+			return moduleRepo.findById(id);
 		}
-		
+	
+	public Module updateModule(Module module) throws IllegalArgumentException {
+		return moduleRepo.save(module);
 	}
 	
-	public Module updateModule(Module module) {
-		try {
-			return moduleRepo.save(module);
-		}
-		catch(Exception e) {
-			throw new NullValueInsertion();
-		}
-		
+	public void deleteModule(int id) throws IllegalArgumentException {
+		moduleRepo.deleteById(id);
 	}
 	
-	public void deleteModule(int id) {
-		try{
-			moduleRepo.deleteById(id);
-		}catch(Exception e) {
-		   throw new NoSuchIDException();
-		}
-		
+	public List<Module> getModuleByUsername(String username) {
+		return moduleRepo.findByName(username);
 	}
-	
-	
-	
-	
 
 }
