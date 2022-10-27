@@ -17,7 +17,6 @@ import javax.persistence.Table;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
-
 @Entity
 @Table(name = "employee_master")
 public class Employee {
@@ -36,16 +35,14 @@ public class Employee {
 	private Date joiningDate;
 	@Column(name = "leavingdate")
 	private Date leavingDate;
-	
+
 	@ManyToMany(cascade = CascadeType.ALL)
-	@JoinTable(name = "employee_master_skill",
-	joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"),
-	inverseJoinColumns =@JoinColumn(name="skill_id" , referencedColumnName = "id") )
+	@JoinTable(name = "employee_master_skill", joinColumns = @JoinColumn(name = "employee_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "skill_id", referencedColumnName = "id"))
 	private List<Skill> skills;
 
 	@ManyToOne
 	@JoinColumn(name = "roleid", nullable = false)
-	private Roles roles;
+	private Roles role;
 
 	@ManyToOne
 	@JoinColumn(name = "locationid", nullable = false)
@@ -118,13 +115,6 @@ public class Employee {
 	public void setLeavingDate(Date leavingDate) {
 		this.leavingDate = leavingDate;
 	}
-	public Roles getRole() {
-		return roles;
-	}
-
-	public void setRole(Roles roles) {
-		this.roles = roles;
-	}
 
 	public Location getLocation() {
 		return location;
@@ -150,12 +140,12 @@ public class Employee {
 		this.skills = skills;
 	}
 
-	public Roles getRoles() {
-		return roles;
+	public Roles getRole() {
+		return role;
 	}
 
-	public void setRoles(Roles roles) {
-		this.roles = roles;
+	public void setRole(Roles role) {
+		this.role = role;
 	}
 
 }

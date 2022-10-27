@@ -12,6 +12,7 @@ import org.springframework.stereotype.Component;
 import com.persistent.pom.customexception.NoSuchIDException;
 import com.persistent.pom.customexception.NullValueInsertion;
 import com.persistent.pom.entities.Employee;
+import com.persistent.pom.entities.Project;
 import com.persistent.pom.repositories.EmployeeRepo;
 import com.persistent.pom.response.ResponseMessage;
 
@@ -43,8 +44,13 @@ public class EmployeeService {
 		employeeRepo.deleteById(id);
 	}
 
-	public List<Employee> getEmployeeByUsername(String username) {
-		return employeeRepo.findByName(username);
+	public Employee getEmployeeByEmail(String email) {
+		return employeeRepo.findByEmail(email);
+	}
+
+	public List<Employee> getEmployeeByProject(Project projectName) {
+		
+		return employeeRepo.findByProject(projectName);
 	}
 
 }

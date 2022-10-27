@@ -16,6 +16,7 @@ public class NoSuchIDException extends RuntimeException {
 		ErrorMessage error = new ErrorMessage();
 		error.setErrrorMessage("Element with id didnt found");
 		error.setStatus(HttpStatus.NOT_FOUND);
+		error.setMessageDescription("No employee with that id fund in the db . Please check ur id and esnd the correct");
 		return new ResponseEntity<>(error, HttpStatus.NOT_FOUND);
 	}
 

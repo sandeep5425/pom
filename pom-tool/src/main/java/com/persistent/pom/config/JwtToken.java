@@ -16,7 +16,7 @@ import io.jsonwebtoken.security.SignatureException;
 @Service
 public class JwtToken {
 
-	private static final int EXPIRY_TIME = 10 * 60 * 60; // TIME A TOKEN IS VALID
+	private static final int EXPIRY_TIME = 60*60*1000; // TIME A TOKEN IS VALID
 
 	@Value("${pom.jwtSecretKey}")
 	private String SECRET_KEY;
@@ -40,14 +40,14 @@ public class JwtToken {
 		}
 	}
 
-	public boolean validateToken(UserRequest user, String token) {
-		String username = claims(token).getSubject();
-		return user.getUsername().equals(username) && !isTokenExpired(token);
-
-	}
+//	public boolean validateToken(UserRequest user, String token) {
+//		String username = claims(token).getSubject();
+//		return user.getUsername().equals(username) && !isTokenExpired(token);
+//	}
 
 	public boolean isTokenExpired(String token) {
 		return claims(token).getExpiration().before(new Date());
 	}
+	
 
 }

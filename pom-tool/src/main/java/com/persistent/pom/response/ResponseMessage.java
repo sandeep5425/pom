@@ -10,7 +10,7 @@ public class ResponseMessage<T> {
 	private T data;
 	private int length;
 	private String message;
-	private TokenResponse token;
+	private String token;
 		
 	public ResponseMessage() {
 		super();
@@ -22,7 +22,7 @@ public class ResponseMessage<T> {
 		this.length = length;
 		this.message = message;
 	}
-	public ResponseMessage(HttpStatus statusCode, T data, String message, TokenResponse token) {
+	public ResponseMessage(HttpStatus statusCode, T data, String message, String token) {
 		super();
 		this.statusCode = statusCode;
 		this.data = data;
@@ -35,7 +35,7 @@ public class ResponseMessage<T> {
 		this.data = data;
 	}
 	
-	public ResponseMessage(HttpStatus statusCode, T data, int length, String message, TokenResponse token) {
+	public ResponseMessage(HttpStatus statusCode, T data, int length, String message, String token) {
 		super();
 		this.statusCode = statusCode;
 		this.data = data;
@@ -67,10 +67,10 @@ public class ResponseMessage<T> {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-	public TokenResponse getToken() {
+	public String getToken() {
 		return token;
 	}
-	public void setToken(TokenResponse token) {
+	public void setToken(String token) {
 		this.token = token;
 	}
 }

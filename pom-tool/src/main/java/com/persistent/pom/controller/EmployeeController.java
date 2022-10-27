@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.persistent.pom.config.JwtToken;
 import com.persistent.pom.customexception.EntityAlreadyExistException;
 import com.persistent.pom.customexception.NoSuchIDException;
 import com.persistent.pom.entities.Employee;
@@ -34,12 +36,17 @@ public class EmployeeController {
 	@Autowired
 	EmployeeService employeeService;
 
+	@Autowired
+	JwtToken jwtToken;
+
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmployeeController.class);
 
 	@GetMapping(value = "/employees")
-	public ResponseEntity<ResponseMessage<List<Employee>>> getEmployees(HttpServletRequest request)
-			throws IllegalArgumentException, Exception {
+	public ResponseEntity<ResponseMessage<List<Employee>>> getEmployees() throws IllegalArgumentException, Exception {
 		LOGGER.info("Entered Employee controller to get employees list :: method = getEmployees");
+		// String token = request.getHeader("Token");
+
+		// String username = jwtToken. ;
 
 		// token -> validated (in order to get roles)
 
@@ -130,6 +137,7 @@ public class EmployeeController {
 			LOGGER.info("Exit Employee controller as no employee exists with that id:: method = deleteEmployee ");
 			throw new NoSuchIDException();
 		}
+		// just put the isActive to false..
 		employeeService.deleteEmployee(id);
 		ResponseMessage<Employee> response = new ResponseMessage<>();
 		response.setData(optEmployee.get());
@@ -139,8 +147,8 @@ public class EmployeeController {
 	}
 
 	@GetMapping(value = "/employeeByName")
-	public List<Employee> getEmployeeByName(@RequestParam("name") String name) {
-		return employeeService.getEmployeeByUsername(name);
+	public Employee getEmployeeByName(@RequestParam("email") String email) {
+		return employeeService.getEmployeeByEmail(email);
 	}
 
 }
